@@ -9,15 +9,17 @@ public class Software {
     String nombreSoftware;
     String version;
     String tipo;
+    String codigo;
     int stock;
     double precio;
     boolean obsoleto;
     
     // Constructor
-    public Software(String nombreSoftware, String version, String tipo, int stock, double precio, boolean obsoleto) {
+    public Software(String nombreSoftware, String version, String tipo,String codigo, int stock, double precio, boolean obsoleto) {
         this.nombreSoftware = nombreSoftware;
         this.version = version;
         this.tipo = tipo;
+        this.codigo= codigo;
         this.stock = stock;
         this.precio = precio;
         this.obsoleto = obsoleto;
@@ -46,6 +48,14 @@ public class Software {
 
     public void setTipo(String tipo) {
         this.tipo = tipo;
+    }
+    
+    public String getCodigo() {
+        return codigo;
+    }
+
+    public void setCodigo(String codigo) {
+        this.codigo = codigo;
     }
 
     public int getStock() {

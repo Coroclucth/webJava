@@ -11,8 +11,8 @@ public class Aplicacion extends Software {
     String diseño;
     
     // Constructor
-    public Aplicacion(String nombreSoftware, String version, String tipo, int stock, double precio, boolean obsoleto, String juegos, String navegadorWeb, String diseño) {
-        super(nombreSoftware, version, tipo, stock, precio, obsoleto);
+    public Aplicacion(String nombreSoftware, String version, String tipo, String codigo, int stock, double precio, boolean obsoleto, String juegos, String navegadorWeb, String diseño) {
+        super(nombreSoftware, version, tipo, codigo, stock, precio, obsoleto);
         this.juegos = juegos;
         this.navegadorWeb = navegadorWeb;
         this.diseño = diseño;

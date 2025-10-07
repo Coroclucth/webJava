@@ -11,8 +11,8 @@ public class Sistema extends Software {
     String linux;
     
     // Constructor
-    public Sistema(String nombreSoftware, String version, String tipo, int stock, double precio, boolean obsoleto, String macOs, String windows, String linux ) {
-        super(nombreSoftware, version, tipo, stock, precio, obsoleto);
+    public Sistema(String nombreSoftware, String version, String tipo, String codigo, int stock, double precio, boolean obsoleto, String macOs, String windows, String linux ) {
+        super(nombreSoftware, version, tipo, codigo, stock, precio, obsoleto);
         this.macOs = macOs;
         this.windows = windows;
         this.linux = linux;
