@@ -23,5 +23,21 @@
   </div>
   <button type="submit" class="btn btn-primary">Submit</button>
 </form>
+    <br> 
+    <h3>Mensaje</h3>
+    <div class="alert alert-secondary" role="alert">
+        <%
+            String identificacion= request.getParameter("id");
+            String nombre = request.getParameter("name");
+            try{
+            int edad = Integer.parseInt(request.getParameter("age"));
+            }catch (Exception e){
+            System.out.println(e);
+            }
+        String tipoUsuario=request.getParameter("user_type");
+        String saludo="Su nombre es "+nombre+" su rol es "+tipoUsuario;
+              out.print(saludo);
+        %>
+    </div>
 </div>
         <%@include file="lib/footer.jsp" %>
