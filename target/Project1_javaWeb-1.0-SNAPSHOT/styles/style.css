@@ -6,6 +6,11 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
     Created on : 24/09/2025, 7:47:26 a. m.
     Author     : INTERNET
 */
+
+.banner-principal{
+    width: 2000px;
+    height: 400px;
+}
 body {
     font-family: 'Arial', sans-serif;
     margin: 0;
