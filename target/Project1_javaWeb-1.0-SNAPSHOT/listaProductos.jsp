@@ -4,12 +4,11 @@
 <html>
     <body>
         <h1>Hello World!</h1>
-    <li>1
-    2
-    3
-    4
-    5
-    </li>
+<ol>
+  <li>1</li>
+  <li>2</li>
+  <li>3</li>
+</ol> 
     </body>
 </html>
 
