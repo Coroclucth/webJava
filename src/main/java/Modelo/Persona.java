@@ -52,4 +52,13 @@ public class Persona {
         this.correo = correo;
     }
     
+    public String getTipoUsuario() {
+        if (this instanceof Cliente) {
+            return "Cliente";
+        } else if (this instanceof Vendedor) {
+            return "Vendedor";
+        }
+        return "Desconocido";
+    }
+    
 }

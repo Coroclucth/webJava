@@ -16,8 +16,8 @@ public class GestionSistemas {
     // Definir contenedora
     LinkedList <Sistema> listaSistema = new LinkedList<>();
     
-    // CREAR APP
-    public void agregarApp (Sistema sistema){
+    // CREAR SISTEMA
+    public void agregarSistema (Sistema sistema){
         //Agregar lista
         listaSistema.add(sistema);
     }
@@ -38,7 +38,7 @@ public class GestionSistemas {
         return null;
         } 
         
-        // EDITAR APP
+        // EDITAR SISTEMA
     public boolean editarSistema(String codigo, Sistema sistemaEditado) {
         for (int i = 0; i < listaSistema.size(); i++) {
             if (listaSistema.get(i).getCodigo().equals(codigo)) {
@@ -49,7 +49,7 @@ public class GestionSistemas {
         return false; 
     }
 
-    // ELIMINAR APP
+    // ELIMINAR SISTEMA
     public boolean eliminarSistema(String codigo) {
         for (int i = 0; i < listaSistema.size(); i++) {
             if (listaSistema.get(i).getCodigo().equals(codigo)) {
@@ -59,12 +59,5 @@ public class GestionSistemas {
         }
         return false; 
     }
-
-    private static class listaSistema {
-
-        public listaSistema() {
-        }
-    }
- 
-    
 }
+

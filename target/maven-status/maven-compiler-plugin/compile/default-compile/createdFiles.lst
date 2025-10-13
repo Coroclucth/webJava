@@ -1,5 +1,7 @@
 com\mycompany\project1_javaweb\JakartaRestConfiguration.class
 Modelo\Aplicacion.class
+Servlets\AppInitializer.class
+Servlets\ProductoServlet.class
 Modelo\Vendedor.class
 Servlets\UsuarioServlet.class
 Modelo\GestionSistemas.class

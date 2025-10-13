@@ -1,7 +1,11 @@
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<<footer>
-    <p>@2025 Todos los derechos reservados - Aplicacion Java Web.<br>Autor: Jaider Coronel y Nicolás Cadena<p>
+</div> <%-- Cierre del div container de header.jsp --%>
+
+<footer class="footer mt-auto py-3">
+    <div class="container text-center">
+        <span>Nicolas Cadena y Jaider Coronel &copy; 2025</span>
+    </div>
 </footer>
-    </body>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
 </html>
