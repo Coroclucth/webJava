@@ -118,6 +118,12 @@
                 <li class="nav-item">
                     <a class="nav-link" href="UsuarioServlet?action=listar">Lista de Usuarios</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="FacturaServlet?action=mostrarFormulario">Generar Factura</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="FacturaServlet?action=listar">Listar Facturas</a>
+                </li>
             </ul>
         </div>
     </div>

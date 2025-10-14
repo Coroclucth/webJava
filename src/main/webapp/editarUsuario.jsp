@@ -33,6 +33,24 @@
                     <input type="number" class="form-control" id="edad" name="edad" value="<c:out value='${usuario.edad}'/>" required>
                 </div>
             </div>
+            <div class="row">
+                <div class="col-md-4 mb-3">
+                    <label for="telefono" class="form-label">Teléfono</label>
+                    <input type="text" class="form-control" id="telefono" name="telefono" value="<c:out value='${usuario.telefono}'/>" required>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <label for="direccion" class="form-label">Dirección</label>
+                    <input type="text" class="form-control" id="direccion" name="direccion" value="<c:out value='${usuario.direccion}'/>" required>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <label for="genero" class="form-label">Género</label>
+                    <select class="form-select" id="genero" name="genero" required>
+                        <option value="Masculino" ${usuario.genero == 'Masculino' ? 'selected' : ''}>Masculino</option>
+                        <option value="Femenino" ${usuario.genero == 'Femenino' ? 'selected' : ''}>Femenino</option>
+                        <option value="Otro" ${usuario.genero == 'Otro' ? 'selected' : ''}>Otro</option>
+                    </select>
+                </div>
+            </div>
         </fieldset>
 
         <c:if test="${tipoUsuario == 'cliente'}">

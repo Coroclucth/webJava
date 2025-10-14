@@ -10,8 +10,8 @@ public class Cliente extends Persona {
      String historial;
      
 // Constructor
-    public Cliente(String nombre, int edad, String cedula, String correo, String tipoCliente, String historial) {
-        super(nombre, edad, cedula, correo);
+    public Cliente(String nombre, int edad, String cedula, String correo, String telefono, String genero, String direccion, String tipoCliente, String historial) {
+        super(nombre, edad, cedula, correo, telefono, genero, direccion);
         this.tipoCliente = tipoCliente;
         this.historial = historial;
     }

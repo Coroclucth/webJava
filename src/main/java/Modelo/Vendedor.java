@@ -11,8 +11,8 @@ public class Vendedor extends Persona {
    String sueldo;
 
    // Constructor
-    public Vendedor(String nombre, int edad, String cedula, String correo, String rango, String horario, String sueldo ) {
-        super(nombre, edad, cedula, correo);
+    public Vendedor(String nombre, int edad, String cedula, String correo, String telefono, String genero, String direccion, String rango, String horario, String sueldo ) {
+        super(nombre, edad, cedula, correo, telefono, genero, direccion);
         this.rango = rango;
         this.horario = horario;
         this.sueldo = sueldo;

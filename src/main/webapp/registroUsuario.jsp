@@ -36,6 +36,24 @@
                 <input type="number" class="form-control" id="edad" name="edad" required>
             </div>
         </div>
+        <div class="row">
+            <div class="col-md-4 mb-3">
+                <label for="telefono" class="form-label">Teléfono</label>
+                <input type="text" class="form-control" id="telefono" name="telefono" required>
+            </div>
+            <div class="col-md-4 mb-3">
+                <label for="direccion" class="form-label">Dirección</label>
+                <input type="text" class="form-control" id="direccion" name="direccion" required>
+            </div>
+            <div class="col-md-4 mb-3">
+                <label for="genero" class="form-label">Género</label>
+                <select class="form-select" id="genero" name="genero" required>
+                    <option value="Masculino">Masculino</option>
+                    <option value="Femenino">Femenino</option>
+                    <option value="Otro">Otro</option>
+                </select>
+            </div>
+        </div>
     </fieldset>
 
     <!-- Campos específicos para Cliente -->

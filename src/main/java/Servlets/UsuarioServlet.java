@@ -78,6 +78,9 @@ public class UsuarioServlet extends HttpServlet {
         String nombre = request.getParameter("nombre");
         String cedula = request.getParameter("cedula");
         String correo = request.getParameter("correo");
+        String telefono = request.getParameter("telefono");
+        String direccion = request.getParameter("direccion");
+        String genero = request.getParameter("genero");
         int edad = 0;
         try {
             edad = Integer.parseInt(request.getParameter("edad"));
@@ -92,14 +95,14 @@ public class UsuarioServlet extends HttpServlet {
             if ("cliente".equalsIgnoreCase(tipoUsuario)) {
                 String tipoCliente = request.getParameter("tipoCliente");
                 String historial = request.getParameter("historial");
-                Cliente clienteActualizado = new Cliente(nombre, edad, cedula, correo, tipoCliente, historial);
+                Cliente clienteActualizado = new Cliente(nombre, edad, cedula, correo, telefono, genero, direccion, tipoCliente, historial);
                 gestionUsuarios.editarCliente(cedulaOriginal, clienteActualizado);
 
             } else if ("vendedor".equalsIgnoreCase(tipoUsuario)) {
                 String rango = request.getParameter("rango");
                 String horario = request.getParameter("horario");
                 String sueldo = request.getParameter("sueldo");
-                Vendedor vendedorActualizado = new Vendedor(nombre, edad, cedula, correo, rango, horario, sueldo);
+                Vendedor vendedorActualizado = new Vendedor(nombre, edad, cedula, correo, telefono, genero, direccion, rango, horario, sueldo);
                 gestionUsuarios.editarVendedor(cedulaOriginal, vendedorActualizado);
             }
             response.sendRedirect("UsuarioServlet?action=listar");
@@ -110,14 +113,14 @@ public class UsuarioServlet extends HttpServlet {
         if ("cliente".equalsIgnoreCase(tipoUsuario)) {
             String tipoCliente = request.getParameter("tipoCliente");
             String historial = request.getParameter("historial");
-            Cliente nuevoCliente = new Cliente(nombre, edad, cedula, correo, tipoCliente, historial);
+            Cliente nuevoCliente = new Cliente(nombre, edad, cedula, correo, telefono, genero, direccion, tipoCliente, historial);
             gestionUsuarios.agregarCliente(nuevoCliente);
 
         } else if ("vendedor".equalsIgnoreCase(tipoUsuario)) {
             String rango = request.getParameter("rango");
             String horario = request.getParameter("horario");
             String sueldo = request.getParameter("sueldo");
-            Vendedor nuevoVendedor = new Vendedor(nombre, edad, cedula, correo, rango, horario, sueldo);
+            Vendedor nuevoVendedor = new Vendedor(nombre, edad, cedula, correo, telefono, genero, direccion, rango, horario, sueldo);
             gestionUsuarios.agregarVendedor(nuevoVendedor);
         }
 

@@ -15,6 +15,9 @@
             <th>Nombre</th>
             <th>Correo</th>
             <th>Edad</th>
+            <th>Teléfono</th>
+            <th>Género</th>
+            <th>Dirección</th>
             <th>Tipo de Usuario</th>
             <th>Acciones</th>
         </tr>
@@ -26,6 +29,9 @@
                 <td><c:out value="${usuario.nombre}"/></td>
                 <td><c:out value="${usuario.correo}"/></td>
                 <td><c:out value="${usuario.edad}"/></td>
+                <td><c:out value="${usuario.telefono}"/></td>
+                <td><c:out value="${usuario.genero}"/></td>
+                <td><c:out value="${usuario.direccion}"/></td>
                 <td>
                     <c:choose>
                         <c:when test="${usuario.tipoUsuario == 'Cliente'}">
