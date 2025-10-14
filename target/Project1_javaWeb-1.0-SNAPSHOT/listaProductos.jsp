@@ -6,6 +6,13 @@
 <h2>Listado de Productos</h2>
 
 <table class="table table-striped table-hover">
+    
+    <!Pendiente>
+    <div class="d-flex align-items-center">
+    <input class="form-control me-2 w-50" type="search" placeholder="Buscar por código" aria-label="Buscar por código"/>
+    <a href="ProductoServlet?action=filtrar&codigo=${producto.codigo}" class="btn btn-warning btn-sm">Filtrar</a>
+</div>
+    
     <thead class="table-dark">
         <tr>
             <th>Código</th>

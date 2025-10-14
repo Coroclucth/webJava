@@ -13,6 +13,8 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import java.util.ArrayList;
+import java.util.List;
 
 @WebServlet(name = "ProductoServlet", urlPatterns = {"/ProductoServlet"})
 public class ProductoServlet extends HttpServlet {
@@ -76,6 +78,29 @@ public class ProductoServlet extends HttpServlet {
                     response.sendRedirect("ProductoServlet"); 
                 }
                 break;
+            case "filtrar":
+        // 1. Obtener el producto buscado:
+        // Buscamos en Aplicaciones (devuelve Aplicacion)
+        Software productoFiltrado = gestionApps.buscarPorCodigo(codigo);
+        
+        // Si no se encuentra en Apps, buscamos en Sistemas (devuelve Sistema)
+        if (productoFiltrado == null) {
+            // Nota: Se asume que gestionSistemas tiene el método buscarPorCodigo y devuelve Sistema/Software
+            productoFiltrado = gestionSistemas.buscarPorCodigo(codigo);
+        }
+        
+        // 2. Crear una lista genérica (List<Software>) con el resultado
+        // Usamos una lista para que el JSP pueda procesar el resultado de forma uniforme.
+        List<Software> listaFiltrada = new ArrayList<>();
+        if (productoFiltrado != null) {
+            listaFiltrada.add(productoFiltrado);
+        }
+        
+        // 3. Establecer el atributo en la solicitud y reenviar a la vista principal
+        // IMPORTANTE: Asegúrate de que el JSP use el atributo "productos" (o el nombre que uses para la lista normal).
+        request.setAttribute("productos", listaFiltrada);
+        request.getRequestDispatcher("index.jsp").forward(request, response);
+        break;
             default:
                 response.sendRedirect("ProductoServlet"); 
                 break;
