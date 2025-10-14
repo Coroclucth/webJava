@@ -7,11 +7,11 @@
 
 <table class="table table-striped table-hover">
     
-    <!Pendiente>
-    <div class="d-flex align-items-center">
-    <input class="form-control me-2 w-50" type="search" placeholder="Buscar por código" aria-label="Buscar por código"/>
-    <a href="ProductoServlet?action=filtrar&codigo=${producto.codigo}" class="btn btn-warning btn-sm">Filtrar</a>
-</div>
+    <form action="ProductoServlet" method="GET" class="d-flex align-items-center mb-3">
+    <input type="hidden" name="action" value="filtrar">
+    <input class="form-control me-2 w-50" type="search" name="codigo" placeholder="Buscar por código" aria-label="Buscar por código"/>
+    <button type="submit" class="btn btn-warning btn-sm">Filtrar</button>
+</form>
     
     <thead class="table-dark">
         <tr>

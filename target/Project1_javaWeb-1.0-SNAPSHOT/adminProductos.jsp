@@ -65,7 +65,7 @@
         </div>
     </div>
 
-    <!-- Campos específicos para Sistema (inicialmente ocultos) -->
+    <!-- Campos específicos para Sistema  -->
     <div id="camposSistema" style="display: none;">
         <div class="row">
             <div class="col-md-4 mb-3">

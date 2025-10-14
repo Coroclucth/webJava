@@ -1,4 +1,4 @@
-</div> <%-- Cierre del div container de header.jsp --%>
+</div> 
 
 <footer class="footer mt-auto py-3">
     <div class="container text-center">

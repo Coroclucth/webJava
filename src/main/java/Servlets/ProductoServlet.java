@@ -58,14 +58,12 @@ public class ProductoServlet extends HttpServlet {
 
         switch (action) {
             case "eliminar":
-                // Intenta eliminar de Aplicaciones y luego de Sistemas
                 if (!gestionApps.eliminarApp(codigo)) {
                     gestionSistemas.eliminarSistema(codigo);
                 }
-                response.sendRedirect("ProductoServlet"); // Vuelve a listar
+                response.sendRedirect("ProductoServlet"); 
                 break;
             case "editar":
-                // Busca el producto en ambas listas
                 Software productoAEditar = gestionApps.buscarPorCodigo(codigo);
                 if (productoAEditar == null) {
                     productoAEditar = gestionSistemas.buscarPorCodigo(codigo);
@@ -79,27 +77,20 @@ public class ProductoServlet extends HttpServlet {
                 }
                 break;
             case "filtrar":
-        // 1. Obtener el producto buscado:
-        // Buscamos en Aplicaciones (devuelve Aplicacion)
+
         Software productoFiltrado = gestionApps.buscarPorCodigo(codigo);
         
-        // Si no se encuentra en Apps, buscamos en Sistemas (devuelve Sistema)
         if (productoFiltrado == null) {
-            // Nota: Se asume que gestionSistemas tiene el método buscarPorCodigo y devuelve Sistema/Software
             productoFiltrado = gestionSistemas.buscarPorCodigo(codigo);
         }
         
-        // 2. Crear una lista genérica (List<Software>) con el resultado
-        // Usamos una lista para que el JSP pueda procesar el resultado de forma uniforme.
         List<Software> listaFiltrada = new ArrayList<>();
         if (productoFiltrado != null) {
             listaFiltrada.add(productoFiltrado);
         }
         
-        // 3. Establecer el atributo en la solicitud y reenviar a la vista principal
-        // IMPORTANTE: Asegúrate de que el JSP use el atributo "productos" (o el nombre que uses para la lista normal).
         request.setAttribute("productos", listaFiltrada);
-        request.getRequestDispatcher("index.jsp").forward(request, response);
+        request.getRequestDispatcher("listaProductos.jsp").forward(request, response);
         break;
             default:
                 response.sendRedirect("ProductoServlet"); 
@@ -112,7 +103,7 @@ public class ProductoServlet extends HttpServlet {
             throws ServletException, IOException {
 
         String action = request.getParameter("action");
-        String tipoProducto = request.getParameter("tipo"); // Value is different for create vs update
+        String tipoProducto = request.getParameter("tipo"); 
         
         // Captura de datos comunes (Software)
         String nombreSoftware = request.getParameter("nombreSoftware");

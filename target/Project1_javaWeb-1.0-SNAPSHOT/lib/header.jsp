@@ -36,6 +36,11 @@
             border-color: #495057;
             color: #e9ecef;
         }
+
+        .form-control::placeholder {
+            color: #adb5bd;
+            opacity: 1; 
+        }
         .form-control:focus, .form-select:focus {
             background-color: #3d444a;
             border-color: #565e64;
@@ -109,6 +114,9 @@
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="registroUsuario.jsp">Registrar Usuario</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="UsuarioServlet?action=listar">Lista de Usuarios</a>
                 </li>
             </ul>
         </div>

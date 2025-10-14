@@ -53,7 +53,7 @@
         </div>
     </fieldset>
 
-    <!-- Campos específicos para Vendedor (inicialmente ocultos) -->
+    <!-- Campos específicos para Vendedor  -->
     <fieldset id="camposVendedor" style="display: none;" class="border p-3 mb-3">
         <legend class="w-auto px-2">Datos de Vendedor</legend>
         <div class="row">
@@ -89,7 +89,6 @@
     }
     
     function validarFormularioUsuario() {
-        // Lógica de validación si es necesaria
         return true;
     }
     
