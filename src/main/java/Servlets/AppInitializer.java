@@ -51,6 +51,6 @@ public class AppInitializer implements ServletContextListener {
 
     @Override
     public void contextDestroyed(ServletContextEvent sce) {
-        // Se ejecuta cuando la aplicación se detiene. No se necesita limpieza para listas en memoria.
+        
     }
 }

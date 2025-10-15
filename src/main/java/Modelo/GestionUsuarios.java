@@ -4,7 +4,6 @@ import java.util.LinkedList;
 
 /**
  * Gestiona las operaciones CRUD para Clientes y Vendedores en memoria.
- * @author INTERNET (refactored by Gemini)
  */
 public class GestionUsuarios {
 
@@ -78,7 +77,6 @@ public class GestionUsuarios {
         return listaVendedores.removeIf(vendedor -> vendedor.getCedula().equals(cedula));
     }
     
-    // --- Métodos Genéricos (útiles para el servlet) ---
 
     /**
      * Busca un usuario (Cliente o Vendedor) por su cédula.
@@ -108,7 +106,6 @@ public class GestionUsuarios {
     /**
      * Este método es para mantener la compatibilidad con el AppInitializer que usa
      * agregarUsuario(Cliente) y agregarUsuario(Vendedor).
-     * La sobrecarga de métodos es válida en Java.
      */
     public void agregarUsuario(Cliente cliente) {
         this.agregarCliente(cliente);

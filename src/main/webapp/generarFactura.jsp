@@ -24,7 +24,6 @@
                 <option value="${producto.codigo}">${producto.nombreSoftware} - $${producto.precio}</option>
             </c:forEach>
         </select>
-        <div class="form-text">Mantén presionada la tecla Ctrl (o Cmd en Mac) para seleccionar múltiples productos.</div>
     </div>
     
     <button type="submit" class="btn btn-primary">Generar Factura</button>

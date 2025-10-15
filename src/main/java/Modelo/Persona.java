@@ -1,9 +1,4 @@
 package Modelo;
-
-/**
- *
- * @author INTERNET
- */
 public class Persona {
     // Atributos
     String nombre;

@@ -1,9 +1,4 @@
 package Modelo;
-
-/**
- *
- * @author INTERNET
- */
 public class Vendedor extends Persona {
     // Atributos
    String rango;

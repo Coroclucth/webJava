@@ -1,9 +1,4 @@
 package Modelo;
-
-/**
- *
- * @author INTERNET
- */
 public class Cliente extends Persona {
     //Atributos
      String tipoCliente;

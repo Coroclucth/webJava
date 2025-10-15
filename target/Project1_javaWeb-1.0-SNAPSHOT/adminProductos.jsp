@@ -107,7 +107,6 @@
     }
     
     function validarFormulario() {
-        // Lógica de validación si es necesaria
         return true;
     }
     

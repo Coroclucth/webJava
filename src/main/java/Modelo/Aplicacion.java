@@ -1,9 +1,4 @@
 package Modelo;
-
-/**
- *
- * @author INTERNET
- */
 public class Aplicacion extends Software {
       // Atributos
     String juegos;

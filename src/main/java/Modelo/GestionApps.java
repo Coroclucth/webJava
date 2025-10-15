@@ -2,10 +2,7 @@ package Modelo;
 
 import java.util.LinkedList;
 
-/**
- *
- * @author PC
- */
+
 public class GestionApps {
        // Metodos para el CRUD
     

@@ -1,9 +1,4 @@
 package Modelo;
-
-/**
- *
- * @author INTERNET
- */
 public class Sistema extends Software {
 // Atributos
     String macOs;

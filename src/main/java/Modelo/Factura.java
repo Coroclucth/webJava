@@ -2,10 +2,7 @@ package Modelo;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
-/**
- *
- * @author INTERNET
- */
+
 public class Factura {
     //Atributos
     private int numeroFactura;
