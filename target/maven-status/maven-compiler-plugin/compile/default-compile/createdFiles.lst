@@ -1,0 +1,17 @@
+com\mycompany\project1_javaweb\JakartaRestConfiguration.class
+Modelo\GestionFacturas.class
+Modelo\Aplicacion.class
+Servlets\ProductoServlet.class
+Modelo\Vendedor.class
+Servlets\UsuarioServlet.class
+Modelo\GestionSistemas.class
+Modelo\Cliente.class
+com\mycompany\project1_javaweb\resources\JakartaEE10Resource.class
+Modelo\Factura.class
+Servlets\FacturaServlet.class
+NewClass.class
+Modelo\Software.class
+Modelo\Sistema.class
+Modelo\Persona.class
+Modelo\GestionUsuarios.class
+Modelo\GestionApps.class
