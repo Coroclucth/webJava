@@ -52,9 +52,14 @@ public class FacturaServlet extends HttpServlet {
 
 
         if ("mostrarFormulario".equals(action)) {
-            List<Cliente> clientes = gestionUsuarios.listarClientes();
-            List<Aplicacion> apps = gestionApps.listarApps();
-            List<Sistema> sistemas = gestionSistemas.listarSistema();
+            // Se obtienen las instancias actualizadas del contexto del servlet.
+            GestionUsuarios gestionUsuariosActualizado = (GestionUsuarios) getServletContext().getAttribute("gestionUsuarios");
+            GestionApps gestionAppsActualizado = (GestionApps) getServletContext().getAttribute("gestionApps");
+            GestionSistemas gestionSistemasActualizado = (GestionSistemas) getServletContext().getAttribute("gestionSistemas");
+
+            List<Cliente> clientes = gestionUsuariosActualizado.listarClientes();
+            List<Aplicacion> apps = gestionAppsActualizado.listarApps();
+            List<Sistema> sistemas = gestionSistemasActualizado.listarSistema();
             List<Software> productos = new LinkedList<>();
             productos.addAll(apps);
             productos.addAll(sistemas);

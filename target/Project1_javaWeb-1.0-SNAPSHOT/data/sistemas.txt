@@ -1,0 +1,1 @@
+SISTEMA;Kali Linux;1.0;Sistema Operativo;SIS001;4;50000.0;false;No;No;Ubuntu

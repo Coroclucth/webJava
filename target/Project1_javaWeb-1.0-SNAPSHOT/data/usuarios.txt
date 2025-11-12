@@ -1,0 +1,2 @@
+CLIENTE;Jaider;24;10113242;juan.perez@email.com;3209876543;Masculino;Avenida de los Estudiantes 3;VIP;No
+VENDEDOR;Nicolas;17;1011513023;nisacasa@gmail.com;3101234567;Masculino;Calle 35#43-75;Senior;Matutino;20000000

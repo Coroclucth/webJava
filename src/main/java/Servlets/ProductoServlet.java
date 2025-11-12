@@ -1,9 +1,9 @@
 package Servlets;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.ArrayList;
 
 import Modelo.Aplicacion;
 import Modelo.GestionApps;
@@ -169,6 +169,7 @@ public class ProductoServlet extends HttpServlet {
                 Aplicacion nuevaApp = new Aplicacion(nombreSoftware, version, "Aplicación", codigo, stock, precio, obsoleto, juegos, navegadorWeb, diseño);
                 gestionApps.agregarApp(nuevaApp);
                 gestionApps.guardarDatos();
+                getServletContext().setAttribute("gestionApps", gestionApps);
 
             } else if ("sistema".equalsIgnoreCase(tipoProducto)) {
                 String macOs = request.getParameter("macOs");
@@ -178,6 +179,7 @@ public class ProductoServlet extends HttpServlet {
                 Sistema nuevoSistema = new Sistema(nombreSoftware, version, "Sistema Operativo", codigo, stock, precio, obsoleto, macOs, windows, linux);
                 gestionSistemas.agregarSistema(nuevoSistema);
                 gestionSistemas.guardarDatos();
+                getServletContext().setAttribute("gestionSistemas", gestionSistemas);
             }
         } catch (Exception e) {
             System.err.println("Error al crear producto: " + e.getMessage());
