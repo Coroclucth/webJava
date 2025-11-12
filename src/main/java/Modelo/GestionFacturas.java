@@ -9,9 +9,13 @@ public class GestionFacturas {
     private LinkedList<Factura> listaFacturas = new LinkedList<>();
     private int proximoNumeroFactura = 1;
     private String rutaArchivo;
+    private GestionApps gestionApps;
+    private GestionSistemas gestionSistemas;
 
-    public GestionFacturas(String rutaArchivo) {
+    public GestionFacturas(String rutaArchivo, GestionApps gestionApps, GestionSistemas gestionSistemas) {
         this.rutaArchivo = rutaArchivo;
+        this.gestionApps = gestionApps;
+        this.gestionSistemas = gestionSistemas;
         cargarFacturas();
     }
 
@@ -83,12 +87,15 @@ public class GestionFacturas {
     }
 
     private void cargarFacturas() {
-        try {
-            File archivo = new File(rutaArchivo);
-            if (!archivo.exists()) return;
+        File archivo = new File(rutaArchivo);
+        if (!archivo.exists() || gestionApps == null || gestionSistemas == null) {
+            return; // No cargar si no hay archivo o gestores
+        }
 
-            BufferedReader reader = new BufferedReader(new FileReader(archivo));
+        try (BufferedReader reader = new BufferedReader(new FileReader(archivo))) {
             String linea;
+            listaFacturas.clear(); // Limpiar lista antes de cargar
+
             while ((linea = reader.readLine()) != null) {
                 String[] partes = linea.split(";");
 
@@ -98,23 +105,45 @@ public class GestionFacturas {
                     String nombreCliente = partes[2];
                     double total = Double.parseDouble(partes[3]);
 
-                    // Crear cliente temporal 
+                    // Crear cliente temporal
                     Cliente cliente = new Cliente(nombreCliente, 0, cedulaCliente, "", "", "", "", "", "");
 
                     LinkedList<Aplicacion> listaApps = new LinkedList<>();
                     LinkedList<Sistema> listaSistemas = new LinkedList<>();
 
-                    // Los productos no se reconstruyen completamente aquí, solo se guardan los códigos
+                    // Reconstruir lista de Aplicaciones
+                    String appsData = partes[4].replace("APPS:", "");
+                    if (!appsData.equals("NINGUNA") && !appsData.isEmpty()) {
+                        String[] appCodigos = appsData.split(",");
+                        for (String codigoApp : appCodigos) {
+                            Aplicacion app = gestionApps.buscarPorCodigo(codigoApp);
+                            if (app != null) {
+                                listaApps.add(app);
+                            }
+                        }
+                    }
+
+                    // Reconstruir lista de Sistemas
+                    String sistemasData = partes[5].replace("SISTEMAS:", "");
+                    if (!sistemasData.equals("NINGUNO") && !sistemasData.isEmpty()) {
+                        String[] sistemaCodigos = sistemasData.split(",");
+                        for (String codigoSistema : sistemaCodigos) {
+                            Sistema sis = gestionSistemas.buscarPorCodigo(codigoSistema);
+                            if (sis != null) {
+                                listaSistemas.add(sis);
+                            }
+                        }
+                    }
+
                     Factura factura = new Factura(numero, cliente, total, listaApps, listaSistemas);
                     listaFacturas.add(factura);
                     proximoNumeroFactura = Math.max(proximoNumeroFactura, numero + 1);
                 }
             }
-            reader.close();
-            System.out.println("Facturas cargadas desde: " + rutaArchivo);
+            System.out.println("Facturas cargadas y reconstruidas desde: " + rutaArchivo);
 
-        } catch (IOException e) {
-            System.err.println("Error al cargar facturas: " + e.getMessage());
+        } catch (IOException | NumberFormatException e) {
+            System.err.println("Error al cargar o procesar facturas: " + e.getMessage());
         }
     }
 }

@@ -10,36 +10,46 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
+// Servlet para gestionar las operaciones relacionadas con las facturas.
 @WebServlet(name = "FacturaServlet", urlPatterns = {"/FacturaServlet"})
 public class FacturaServlet extends HttpServlet {
 
+    // Gestores para manejar la lógica de negocio de facturas, usuarios y productos.
     private GestionFacturas gestionFacturas;
     private GestionUsuarios gestionUsuarios;
     private GestionApps gestionApps;
     private GestionSistemas gestionSistemas;
 
+    // Inicialización del servlet.
     @Override
     public void init() throws ServletException {
-        // Intentar obtener del contexto
-        this.gestionFacturas = (GestionFacturas) getServletContext().getAttribute("gestionFacturas");
-        this.gestionUsuarios = (GestionUsuarios) getServletContext().getAttribute("gestionUsuarios");
-        this.gestionApps = (GestionApps) getServletContext().getAttribute("gestionApps");
-        this.gestionSistemas = (GestionSistemas) getServletContext().getAttribute("gestionSistemas");
+        // Obtener las rutas de los archivos de datos desde el contexto del servlet.
+        String rutaUsuarios = getServletContext().getRealPath("/data/usuarios.txt");
+        String rutaApps = getServletContext().getRealPath("/data/apps.txt");
+        String rutaSistemas = getServletContext().getRealPath("/data/sistemas.txt");
+        String rutaFacturas = getServletContext().getRealPath("/data/facturas.txt");
 
-        // Si no existe, inicializar
-        if (this.gestionFacturas == null) {
-            String rutaData = getServletContext().getRealPath("/data/facturas.txt");
-            this.gestionFacturas = new GestionFacturas(rutaData);
-            getServletContext().setAttribute("gestionFacturas", this.gestionFacturas);
-            System.out.println("GestionFacturas inicializado desde FacturaServlet en: " + rutaData);
-        }
+
+        this.gestionUsuarios = new GestionUsuarios(rutaUsuarios);
+        this.gestionApps = new GestionApps(rutaApps);
+        this.gestionSistemas = new GestionSistemas(rutaSistemas);
+
+        this.gestionFacturas = new GestionFacturas(rutaFacturas, this.gestionApps, this.gestionSistemas);
+
+        // Guardar todas las instancias de gestión en el contexto del servlet para que estén disponibles en toda la aplicación.
+        getServletContext().setAttribute("gestionUsuarios", this.gestionUsuarios);
+        getServletContext().setAttribute("gestionApps", this.gestionApps);
+        getServletContext().setAttribute("gestionSistemas", this.gestionSistemas);
+        getServletContext().setAttribute("gestionFacturas", this.gestionFacturas);
     }
 
+    // Maneja las solicitudes GET.
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
         String action = request.getParameter("action");
+
 
         if ("mostrarFormulario".equals(action)) {
             List<Cliente> clientes = gestionUsuarios.listarClientes();
@@ -60,10 +70,12 @@ public class FacturaServlet extends HttpServlet {
         }
     }
 
+    // Maneja las solicitudes POST.
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
+        // Obtengo los datos del formulario de nueva factura.
         String clienteCedula = request.getParameter("cliente");
         String[] productosSeleccionados = request.getParameterValues("productos");
 
@@ -73,6 +85,7 @@ public class FacturaServlet extends HttpServlet {
         LinkedList<Sistema> sistemasComprados = new LinkedList<>();
         double total = 0;
 
+        // Proceso los productos seleccionados para agregarlos a la factura.
         if (productosSeleccionados != null) {
             for (String codigoProducto : productosSeleccionados) {
                 Software producto = gestionApps.buscarPorCodigo(codigoProducto);
@@ -91,10 +104,11 @@ public class FacturaServlet extends HttpServlet {
             }
         }
 
-        // Crear y guardar factura
+        // Creo y guardo la nueva factura.
         Factura nuevaFactura = new Factura(0, cliente, total, appsCompradas, sistemasComprados);
         gestionFacturas.agregarFactura(nuevaFactura);
 
+        // Redirijo al usuario a la lista de facturas.
         response.sendRedirect("FacturaServlet?action=listar");
     }
 }

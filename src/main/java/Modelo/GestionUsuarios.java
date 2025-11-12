@@ -98,7 +98,7 @@ public class GestionUsuarios {
     // MÉTODOS GENERALES (para UsuarioServlet)
     // -----------------------------------------------------------
 
-    // 🔍 Buscar cualquier usuario (cliente o vendedor) por cédula
+    // ?Buscar cualquier usuario (cliente o vendedor) por cédula
     public Persona buscarUsuarioPorCedula(String cedula) {
         Cliente cliente = buscarClientePorCedula(cedula);
         if (cliente != null) return cliente;
@@ -109,7 +109,7 @@ public class GestionUsuarios {
         return null;
     }
 
-    // ❌ Eliminar cualquier usuario (cliente o vendedor) por cédula
+    // Eliminar cualquier usuario (cliente o vendedor) por cédula
     public boolean eliminarUsuarioPorCedula(String cedula) {
         Cliente cliente = buscarClientePorCedula(cedula);
         if (cliente != null) {

@@ -12,6 +12,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
 @WebServlet(name = "UsuarioServlet", urlPatterns = {"/UsuarioServlet"})
 public class UsuarioServlet extends HttpServlet {
@@ -49,9 +50,16 @@ public class UsuarioServlet extends HttpServlet {
         }
 
         switch (action) {
+            case "logout":
+                HttpSession session = request.getSession(false); 
+                if (session != null) {
+                    session.invalidate();
+                }
+                response.sendRedirect("index.jsp");
+                break;
             case "eliminar":
                 gestionUsuarios.eliminarUsuarioPorCedula(cedula);
-                gestionUsuarios.guardarDatos(); // Guardar cambios en archivo
+                gestionUsuarios.guardarDatos();
                 response.sendRedirect("UsuarioServlet?action=listar");
                 break;
 
@@ -82,9 +90,32 @@ public class UsuarioServlet extends HttpServlet {
             throws ServletException, IOException {
 
         String action = request.getParameter("action");
+
+        // --- Lógica de INICIO DE SESIÓN ---
+        if ("login".equals(action)) {
+            String cedulaLogin = request.getParameter("cedula");
+            Persona usuario = gestionUsuarios.buscarUsuarioPorCedula(cedulaLogin);
+            HttpSession session = request.getSession();
+
+            if (usuario != null) {
+                session.setAttribute("usuario", usuario);
+                if (usuario instanceof Vendedor) {
+                    session.setAttribute("rol", "vendedor");
+                    response.sendRedirect("home.jsp");
+                } else {
+                    session.setAttribute("rol", "cliente");
+                    response.sendRedirect("FacturaServlet?action=mostrarFormulario");
+                }
+            } else {
+                request.setAttribute("error", "Cédula no encontrada. Por favor, regístrese.");
+                request.getRequestDispatcher("index.jsp").forward(request, response);
+            }
+            return; // Detener la ejecución aquí para el login
+        }
+
         String tipoUsuario = request.getParameter("tipoUsuario");
 
-        // --- Captura de datos comunes ---
+        // --- Captura de datos---
         String nombre = request.getParameter("nombre");
         String cedula = request.getParameter("cedula");
         String correo = request.getParameter("correo");
